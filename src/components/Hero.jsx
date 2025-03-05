@@ -12,8 +12,7 @@ const Hero = ({ onShowHero5 }) => {
           <span className="text-blue-600"> Spot Tracker</span>
         </p>
         <p className="text-gray-500 text-base leading-relaxed py-4">
-          Automate inventory orders, eliminate order bookers, and streamline
-          operations effortlessly.
+        The ultimate solution for large-scale industries to automate inventory orders, eliminate order bookers, and streamline operations effortlessly. 
         </p>
         <button 
           className="bg-red-600 text-white font-semibold px-6 py-3 w-48 rounded-full shadow-md hover:bg-red-700 transition duration-300"
