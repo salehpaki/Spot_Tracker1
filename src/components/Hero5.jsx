@@ -6,14 +6,14 @@ const Hero5 = ({ onClose }) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-screen flex justify-center p-6 bg-gray-900 py-5">
+    <div className=" fixed top-0 left-0 w-full h-screen flex justify-center p-6 bg-gray-900 py-5">
       {!showForm ? (
         <motion.div
           initial={{ x: "100%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: "100%", opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="bg-white rounded-lg shadow-lg w-full max-w-4xl p-8 relative"
+          className="bg-white border-blue-800/90 border-[10px] rounded-lg shadow-lg w-full max-w-4xl p-8 relative"
         >
           {/* Close Button */}
           <motion.button

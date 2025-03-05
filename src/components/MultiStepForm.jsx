@@ -60,14 +60,14 @@ const MultiStepForm = ({ onClose }) => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-blue-900 p-4 border-8 border-blue-600">
-      <div className="flex w-full h-full bg-white rounded-2xl shadow-xl items-center justify-center space-x-6 p-10">
+    <div className="w-full  flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl">
+      <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
         
         {/* Side Panel - Shrunk */}
-        <div className="py-24 w-1/ bg-white p-16 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center relative">
-          <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-16 " />
+        <div className="py-32  bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20   h-full  justify-center text-center relative">
+          <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-10  top-[0]" />
           
-          <div className="space-y-6 relative w-full">
+          <div className="space-y-6 relative w-full mt-4">
             {steps.map((s, index) => (
               <motion.div
                 key={index}
@@ -92,7 +92,7 @@ const MultiStepForm = ({ onClose }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.5 }}
-          className="py-36 w-3/4 bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
+          className="py-36 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
         >
           <img src="/dd.png" alt="Back" className="absolute top-2 left-2 cursor-pointer w-16" onClick={() => window.location.href = "/"} />
           
