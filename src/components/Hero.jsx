@@ -3,7 +3,7 @@ import Hero5 from "./Hero5";
 
 const Hero = ({ onShowHero5 }) => {
   return (
-    <div className="flex flex-col lg:flex-row items-center min-h-screen justify-between px-8 text-center lg:text-left bg-white relative -mt-19">
+    <div className="flex flex-col lg:flex-row items-center min-h-screen justify-between px-8 text-center lg:text-left bg-white relative -mt-20">
       {/* Left Section */}
       <div className="flex flex-col mb-12 px-16">
         <p className="text-[40px] font-bold">
@@ -43,12 +43,12 @@ const Hero = ({ onShowHero5 }) => {
         <div className="relative w-full mt-32">
           <img
             src="/hs.png"
-            className="relative w-[110%] right-6 max-w-5xl z-0 mb-24 pointer-events-none ml-2.5"
+            className="relative w-[110%] right-6 max-w-5xl z-0 mb-24 pointer-events-none ml-2.5 mt-8"
             alt="Dashboard Image 2"
           />
           <img
             src="/7.png"
-            className="absolute top-[20px] right-40 w-2/3"
+            className="absolute top-[20px] right-40 w-2/3 mt-8"
             alt="Overlay Image"
           />
           <img
