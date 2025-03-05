@@ -71,7 +71,9 @@ const MultiStepForm = ({ onClose }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl">
+    <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl relative">
+     
+      
       <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
         {/* Side Panel */}
         <div className="py-32 bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20 h-full justify-center text-center relative">
@@ -109,6 +111,13 @@ const MultiStepForm = ({ onClose }) => {
             animate={{ opacity: 1, y: [0, -10, 0] }}
             className="flex items-center mb-6 space-x-4 w-full"
           >
+             {/* Back Button */}
+      <img
+        src="/dd.png"
+        alt="Back"
+        className="absolute top-2 left-2 cursor-pointer w-16"
+        onClick={() => window.location.href = "/"}
+      />
             <img src="/cc.png" alt="Question Icon" className="w-16" />
             {loading ? (
               <div className="flex space-x-3">
