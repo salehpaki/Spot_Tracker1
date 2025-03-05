@@ -18,6 +18,7 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,7 +43,11 @@ const MultiStepForm = ({ onClose }) => {
 
   const nextStep = () => {
     if (validateField() && step < steps.length - 1) {
-      setStep(step + 1);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setStep(step + 1);
+      }, 2000);
     }
   };
 
@@ -59,14 +64,18 @@ const MultiStepForm = ({ onClose }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      nextStep();
+    }
+  };
+
   return (
-    <div className="w-full  flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl">
+    <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl">
       <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
-        
-        {/* Side Panel - Shrunk */}
-        <div className="py-32  bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20   h-full  justify-center text-center relative">
-          <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-10  top-[0]" />
-          
+        {/* Side Panel */}
+        <div className="py-32 bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20 h-full justify-center text-center relative">
+          <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-10 top-[0]" />
           <div className="space-y-6 relative w-full mt-4">
             {steps.map((s, index) => (
               <motion.div
@@ -86,7 +95,7 @@ const MultiStepForm = ({ onClose }) => {
           </div>
         </div>
 
-        {/* Main Form Section - Expanded */}
+        {/* Main Form Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -94,9 +103,6 @@ const MultiStepForm = ({ onClose }) => {
           transition={{ duration: 0.5 }}
           className="py-36 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
         >
-          <img src="/dd.png" alt="Back" className="absolute top-2 left-2 cursor-pointer w-16" onClick={() => window.location.href = "/"} />
-          
-          {/* Static Logo */}
           <motion.div
             key={step}
             initial={{ opacity: 0, y: -20 }}
@@ -104,56 +110,48 @@ const MultiStepForm = ({ onClose }) => {
             className="flex items-center mb-6 space-x-4 w-full"
           >
             <img src="/cc.png" alt="Question Icon" className="w-16" />
-            <p className="text-xl font-semibold text-gray-800 text-left w-full">
-              {step === 0 && "Hi there! Let’s get to know each other first. What’s your name?"}
-              {step === 1 && "Nice to meet you. What’s your Company Called?"}
-              {step === 2 && "What is the type of your business?"}
-              {step === 3 && "Enter your email?"}
-              {step === 4 && "Enter your phone number:"}
-              <span className="animate-pulse">...</span>
-            </p>
+            {loading ? (
+              <div className="flex space-x-3">
+                <motion.div className="w-2 h-2 bg-blue-400 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4 }}></motion.div>
+                <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.1 }}></motion.div>
+                <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.2 }}></motion.div>
+              </div>
+            ) : (
+              <p className="text-xl font-semibold text-gray-800 text-left w-full">
+                {steps[step]}
+              </p>
+            )}
           </motion.div>
 
-          {/* Input Field */}
-          <motion.input
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            type={step === 3 ? "email" : "text"}
-            name={Object.keys(formData)[step]}
-            value={formData[Object.keys(formData)[step]]}
-            onChange={handleChange}
-            className="w-full p-4 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-            placeholder={steps[step]}
-          />
+          {!loading && (
+            <motion.input
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              type={step === 3 ? "email" : "text"}
+              name={Object.keys(formData)[step]}
+              value={formData[Object.keys(formData)[step]]}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              className="w-full p-4 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
+              placeholder={steps[step]}
+            />
+          )}
 
-          {/* Buttons */}
-          <div className="flex justify-between mt-6 w-full">
+          <div className="flex gap-4 mt-6 w-full">
             {step > 0 && (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={prevStep}
-                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
-              >
+              <button onClick={prevStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
                 Back
-              </motion.button>
+              </button>
             )}
             {step < steps.length - 1 ? (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={nextStep}
-                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
-              >
+              <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
                 Next
-              </motion.button>
+              </button>
             ) : (
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                onClick={handleSubmit}
-                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
-              >
+              <button onClick={handleSubmit} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
                 Finish
-              </motion.button>
+              </button>
             )}
           </div>
         </motion.div>
