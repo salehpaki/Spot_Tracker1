@@ -34,8 +34,9 @@ function App() {
               <Hero1 />
               <Hero2 />
               <Hero3 />
-              <Hero4 onShowHero5={() => setShowHero5(true)} />
               <Testimonials />
+              <Hero4 onShowHero5={() => setShowHero5(true)} />
+             
               <FAQSection />
               <Header />
             </>

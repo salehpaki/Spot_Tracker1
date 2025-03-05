@@ -5,7 +5,7 @@ const Hero2 = () => {
     <div>
       <div className="text-center py-10">
         <h2 className="py-4 text-3xl font-bold">How it Works?</h2>
-        <p className="py-0 text-lg text-gray-600">
+        <p className="py-0 text-lg text-gray-600 font-medium">
           Seamless Order Management in 4 Simple Steps
         </p>
       </div>
