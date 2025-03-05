@@ -12,7 +12,7 @@ const Hero1 = () => {
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {/* Feature 1 */}
-        <div className="bg-blue-600 p-5 rounded-xl">
+        <div className="bg-blue-800/90 p-5 rounded-xl">
           <div className="flex justify-center mb-3">
             <img src="/ss.png" className="h-12 w-12" alt="Icon" />
           </div>
@@ -21,7 +21,7 @@ const Hero1 = () => {
         </div>
 
         {/* Feature 2 */}
-        <div className="bg-blue-600 p-5 rounded-xl">
+        <div className="bg-blue-800/90 p-5 rounded-xl">
           <div className="flex justify-center mb-3">
             <img src="/sv.png" className="h-12 w-12" alt="Icon" />
           </div>
@@ -30,7 +30,7 @@ const Hero1 = () => {
         </div>
 
         {/* Feature 3 */}
-        <div className="bg-blue-600 p-5 rounded-xl">
+        <div className="bg-blue-800/90 p-5 rounded-xl">
           <div className="flex justify-center mb-3">
             <img src="/sc.png" className="h-12 w-12" alt="Icon" />
           </div>

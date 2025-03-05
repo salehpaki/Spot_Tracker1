@@ -19,7 +19,7 @@ const Hero5 = ({ onClose }) => {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="absolute top-4 right-4 bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold"
+            className="absolute top-4 right-4 bg-blue-800/90 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold"
             onClick={onClose}
           >
             ✕
@@ -42,8 +42,8 @@ const Hero5 = ({ onClose }) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl font-bold text-gray-900 mt-4 py-4"
           >
-            <span className="text-blue-600">Revolutionize</span> Your Inventory
-            Management with <span className="text-blue-600">Spot Tracker</span>
+            <span className="text-blue-800/90">Revolutionize</span> Your Inventory
+            Management with <span className="text-blue-800/90">Spot Tracker</span>
           </motion.h2>
 
           <motion.p
@@ -75,7 +75,7 @@ const Hero5 = ({ onClose }) => {
 
          {/* Simple Card Component */}
 <motion.div
-  className="bg-blue-700 text-white p-4 rounded-xl max-w-sm absolute bottom-6 right-6"
+  className="bg-blue-800/90 text-white p-4 rounded-xl max-w-sm absolute bottom-6 right-6"
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, delay: 0.6 }}

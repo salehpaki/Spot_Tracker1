@@ -7,9 +7,9 @@ const Hero = ({ onShowHero5 }) => {
       {/* Left Section */}
       <div className="flex flex-col mb-12 px-16">
         <p className="text-[40px] font-bold">
-          <span className="text-blue-600">Revolutionize</span> Your Inventory 
+          <span className="text-blue-800/90">Revolutionize</span> Your Inventory 
           Management with
-          <span className="text-blue-600"> Spot Tracker</span>
+          <span className="text-blue-800/90"> Spot Tracker</span>
         </p>
         <p className="text-gray-500 text-base leading-relaxed py-4">
         The ultimate solution for large-scale industries to automate inventory orders, eliminate order bookers, and streamline operations effortlessly. 
