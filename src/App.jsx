@@ -20,13 +20,14 @@ function App() {
   return (
     <Router>
       <div className="relative">
-      
         {!showHero5 && <Navbar onDemoClick={() => setShowHero5(true)} />}
-
 
         <AnimatePresence>
           {showHero5 ? (
-            <Hero5 onClose={() => setShowHero5(false)} onFormOpen={() => setShowForm(true)} />
+            <Hero5
+              onClose={() => setShowHero5(false)}
+              onFormOpen={() => setShowForm(true)}
+            />
           ) : (
             <>
               <Hero onShowHero5={() => setShowHero5(true)} />
@@ -42,7 +43,9 @@ function App() {
         </AnimatePresence>
 
         {/* Modal Form Handling */}
-        <AnimatePresence>{showForm && <MultiStepForm onClose={() => setShowForm(false)} />}</AnimatePresence>
+        <AnimatePresence>
+          {showForm && <MultiStepForm onClose={() => setShowForm(false)} />}
+        </AnimatePresence>
       </div>
     </Router>
   );
