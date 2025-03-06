@@ -105,19 +105,20 @@ const MultiStepForm = ({ onClose }) => {
           transition={{ duration: 0.5 }}
           className="py-36 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
         >
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: [0, -10, 0] }}
-            className="flex items-center mb-6 space-x-4 w-full"
-          >
-             {/* Back Button */}
+           {/* Back Button */}
       <img
         src="/dd.png"
         alt="Back"
         className="absolute top-2 left-2 cursor-pointer w-16"
         onClick={() => window.location.href = "/"}
       />
+          <motion.div
+            key={step}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: [0, -10, 0] }}
+            className="flex items-center mb-6 space-x-4 w-full"
+          >
+            
             <img src="/cc.png" alt="Question Icon" className="w-16" />
             {loading ? (
               <div className="flex space-x-3">
