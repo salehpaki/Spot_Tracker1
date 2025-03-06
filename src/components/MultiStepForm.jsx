@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -18,6 +18,7 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
+  const [lastChat, setLastChat] = useState(null); // Save only the latest question and answer
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -43,11 +44,15 @@ const MultiStepForm = ({ onClose }) => {
 
   const nextStep = () => {
     if (validateField()) {
+      // Save the current question and answer as the last chat
+      const currentField = Object.keys(formData)[step];
+      setLastChat({ question: steps[step], answer: formData[currentField] });
+
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setStep((prevStep) => prevStep + 1);
-      }, 350);
+      }, 1000);
     }
   };
 
@@ -57,6 +62,9 @@ const MultiStepForm = ({ onClose }) => {
 
   const handleSubmit = () => {
     if (validateField()) {
+      const currentField = Object.keys(formData)[step];
+      setLastChat({ question: steps[step], answer: formData[currentField] });
+
       alert("Thank you for your submission!");
       onClose();
     }
@@ -71,15 +79,16 @@ const MultiStepForm = ({ onClose }) => {
   return (
     <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl relative">
       <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
-        
-        {/* Sidebar Steps */}
+        {/* Left Section (unchanged) */}
         <div className="py-32 bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20 h-full justify-center text-center relative">
           <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-10 top-[0]" />
           <div className="space-y-6 relative w-full mt-4">
             {steps.map((s, index) => (
               <motion.div
                 key={index}
-                className={`text-lg flex items-center ${index === step ? "font-bold text-blue-700" : "text-gray-400"}`}
+                className={`text-lg flex items-center ${
+                  index === step ? "font-bold text-blue-700" : "text-gray-400"
+                }`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
@@ -97,16 +106,34 @@ const MultiStepForm = ({ onClose }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.5 }}
-          className="py-36 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
+          className="py-1 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-start items-start relative shadow-lg"
         >
           {/* Back Button */}
           <img
             src="/dd.png"
             alt="Back"
-            className="absolute top-2 left-2 cursor-pointer w-16"
-            onClick={() => window.location.href = "/"}
+            className="absolute top-2 left-2 cursor-pointer w-12 h-12"
+            onClick={() => (window.location.href = "/")}
           />
-          
+
+          {/* Latest Chat Display */}
+          <div className="w-full mb-4 p-4 rounded-xl">
+            {lastChat ? (
+              <>
+                <p className="text-gray-600 font-bold text-lg py-2 flex items-center">
+                  <img src="66.png" alt="Q" className="w-20 h-18 mr-2" />
+                  {lastChat.question}
+                </p>
+                <p className="text-gray-600 font-bold text-lg py-1 flex items-center justify-end">
+                  <img src="/66.png" alt="A" className="w-20 h-18 mr-2" />
+                  {lastChat.answer}
+                </p>
+              </>
+            ) : (
+              <p className="text-gray-400"></p>
+            )}
+          </div>
+
           {/* Question Text */}
           <motion.div
             key={step}
@@ -117,9 +144,21 @@ const MultiStepForm = ({ onClose }) => {
             <img src="/cc.png" alt="Question Icon" className="w-16" />
             {loading ? (
               <div className="flex space-x-3">
-                <motion.div className="w-2 h-2 bg-blue-400 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4 }}></motion.div>
-                <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.1 }}></motion.div>
-                <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.2 }}></motion.div>
+                <motion.div
+                  className="w-2 h-2 bg-blue-400 rounded-full"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.4 }}
+                ></motion.div>
+                <motion.div
+                  className="w-2 h-2 bg-blue-500 rounded-full"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.4, delay: 0.1 }}
+                ></motion.div>
+                <motion.div
+                  className="w-2 h-2 bg-blue-500 rounded-full"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 0.4, delay: 0.2 }}
+                ></motion.div>
               </div>
             ) : (
               <p className="text-xl font-semibold text-gray-800 text-left w-full">
@@ -139,7 +178,7 @@ const MultiStepForm = ({ onClose }) => {
               value={formData[Object.keys(formData)[step]]}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
-              className="w-full p-4 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
+              className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
               placeholder={steps[step]}
               autoFocus
             />
@@ -148,16 +187,25 @@ const MultiStepForm = ({ onClose }) => {
           {/* Navigation Buttons */}
           <div className="flex gap-4 mt-6 w-full">
             {step > 0 && (
-              <button onClick={prevStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
+              <button
+                onClick={prevStep}
+                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
+              >
                 Back
               </button>
             )}
             {step < steps.length - 1 ? (
-              <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
+              <button
+                onClick={nextStep}
+                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
+              >
                 Next
               </button>
             ) : (
-              <button onClick={handleSubmit} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
+              <button
+                onClick={handleSubmit}
+                className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md"
+              >
                 Submit
               </button>
             )}
