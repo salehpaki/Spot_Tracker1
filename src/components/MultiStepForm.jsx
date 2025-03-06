@@ -170,7 +170,7 @@ const MultiStepForm = ({ onClose }) => {
               </button>
             ) : (
               <button onClick={handleSubmit} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
-                Finish
+                Submit
               </button>
             )}
           </div>
