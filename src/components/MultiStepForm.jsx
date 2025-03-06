@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -10,7 +10,7 @@ const steps = [
 ];
 
 const MultiStepForm = ({ onClose }) => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(-1); // Start with -1 to show the welcome message first
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -18,11 +18,16 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Show loading animation initially
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // Hide loading animation after 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   const validateField = () => {
     const currentField = Object.keys(formData)[step];
@@ -42,12 +47,12 @@ const MultiStepForm = ({ onClose }) => {
   };
 
   const nextStep = () => {
-    if (validateField() && step < steps.length - 1) {
+    if (step === -1 || validateField()) {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
         setStep(step + 1);
-      }, 2000);
+      }, 1000); // Add 1-second delay before moving to the next question
     }
   };
 
@@ -72,8 +77,6 @@ const MultiStepForm = ({ onClose }) => {
 
   return (
     <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl relative">
-     
-      
       <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
         {/* Side Panel */}
         <div className="py-32 bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20 h-full justify-center text-center relative">
@@ -105,20 +108,19 @@ const MultiStepForm = ({ onClose }) => {
           transition={{ duration: 0.5 }}
           className="py-36 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-center items-start relative shadow-lg"
         >
-           {/* Back Button */}
-      <img
-        src="/dd.png"
-        alt="Back"
-        className="absolute top-2 left-2 cursor-pointer w-16"
-        onClick={() => window.location.href = "/"}
-      />
+          {/* Back Button */}
+          <img
+            src="/dd.png"
+            alt="Back"
+            className="absolute top-2 left-2 cursor-pointer w-16"
+            onClick={() => window.location.href = "/"}
+          />
           <motion.div
             key={step}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: [0, -10, 0] }}
             className="flex items-center mb-6 space-x-4 w-full"
           >
-            
             <img src="/cc.png" alt="Question Icon" className="w-16" />
             {loading ? (
               <div className="flex space-x-3">
@@ -126,6 +128,10 @@ const MultiStepForm = ({ onClose }) => {
                 <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.1 }}></motion.div>
                 <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.2 }}></motion.div>
               </div>
+            ) : step === -1 ? (
+              <p className="text-xl font-semibold text-gray-800 text-left w-full">
+                Hi there! Let’s get to know each other first. What’s your name?
+              </p>
             ) : (
               <p className="text-xl font-semibold text-gray-800 text-left w-full">
                 {steps[step]}
@@ -133,7 +139,7 @@ const MultiStepForm = ({ onClose }) => {
             )}
           </motion.div>
 
-          {!loading && (
+          {!loading && step !== -1 && (
             <motion.input
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -157,6 +163,10 @@ const MultiStepForm = ({ onClose }) => {
             {step < steps.length - 1 ? (
               <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
                 Next
+              </button>
+            ) : step === -1 ? (
+              <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
+                Start
               </button>
             ) : (
               <button onClick={handleSubmit} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
