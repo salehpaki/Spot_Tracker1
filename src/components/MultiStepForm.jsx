@@ -47,7 +47,7 @@ const MultiStepForm = ({ onClose }) => {
       setTimeout(() => {
         setLoading(false);
         setStep((prevStep) => prevStep + 1);
-      }, 1000);
+      }, 350);
     }
   };
 
