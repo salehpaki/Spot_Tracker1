@@ -5,14 +5,14 @@ const Navbar = ({ onDemoClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="left-0 w-full flex justify-between items-center px-4 z-10  fixed top-0 bg-white">
+    <nav className="left-0 w-full flex justify-between items-center px-4 z-10 fixed top-0 bg-white">
       {/* Logo */}
       <div className="flex items-center py-4 mx-4">
         <img src="/hh.png" alt="Logo" className="h-10 w-auto" />
       </div>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex space-x-8 text-lg text-gray-800 font-bold gap-8">
+      <ul className="hidden md:flex space-x-8 text-base lg:text-lg text-gray-800 font-bold">
         <li className="hover:text-blue-600 cursor-pointer">Home</li>
         <li className="hover:text-blue-600 cursor-pointer">Services</li>
         <li className="hover:text-blue-600 cursor-pointer">Features</li>
@@ -21,10 +21,10 @@ const Navbar = ({ onDemoClick }) => {
 
       {/* Mobile Menu Toggle Button */}
       <button
-        className="md:hidden p-2"
+        className="md:hidden p-1 text-gray-800"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X size={30} /> : <Menu size={30} />}
+        {isOpen ? <X size={24} /> : <Menu size={24} />} {/* Adjusted size to 24 for compactness */}
       </button>
 
       {/* Mobile Menu */}
@@ -35,7 +35,7 @@ const Navbar = ({ onDemoClick }) => {
           <li className="hover:text-blue-600 cursor-pointer">Features</li>
           <li className="hover:text-blue-600 cursor-pointer">Testimonials</li>
           <button
-            className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-xl"
+            className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-lg"
             onClick={onDemoClick}
           >
             Get a Demo
@@ -45,7 +45,7 @@ const Navbar = ({ onDemoClick }) => {
 
       {/* Get a Demo Button for Desktop */}
       <button
-        className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-xl hidden md:block"
+        className="bg-red-600 text-white px-4 lg:px-5 py-2 rounded-full hover:bg-red-700 text-base lg:text-lg hidden md:block"
         onClick={onDemoClick}
       >
         Get a Demo
@@ -54,4 +54,4 @@ const Navbar = ({ onDemoClick }) => {
   );
 };
 
-export default Navbar;
+export default Navbar
