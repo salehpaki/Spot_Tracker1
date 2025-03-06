@@ -10,7 +10,7 @@ const steps = [
 ];
 
 const MultiStepForm = ({ onClose }) => {
-  const [step, setStep] = useState(-1); // Start with -1 to show the welcome message first
+  const [step, setStep] = useState(0); // Start directly with the first question
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -18,16 +18,11 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [loading, setLoading] = useState(true); // Show loading animation initially
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); // Hide loading animation after 2 seconds
-    return () => clearTimeout(timer);
-  }, []);
 
   const validateField = () => {
     const currentField = Object.keys(formData)[step];
@@ -47,19 +42,17 @@ const MultiStepForm = ({ onClose }) => {
   };
 
   const nextStep = () => {
-    if (step === -1 || validateField()) {
+    if (validateField()) {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        setStep(step + 1);
-      }, 1000); // Add 1-second delay before moving to the next question
+        setStep((prevStep) => prevStep + 1);
+      }, 1000);
     }
   };
 
   const prevStep = () => {
-    if (step > 0) {
-      setStep(step - 1);
-    }
+    setStep((prevStep) => Math.max(0, prevStep - 1));
   };
 
   const handleSubmit = () => {
@@ -78,7 +71,8 @@ const MultiStepForm = ({ onClose }) => {
   return (
     <div className="w-full flex items-center justify-center bg-blue-800/90 p-4 border-8 rounded-xl relative">
       <div className="flex w-full h-full rounded-2xl shadow-xl items-center justify-center space-x-8 p-3">
-        {/* Side Panel */}
+        
+        {/* Sidebar Steps */}
         <div className="py-32 bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center gap-20 h-full justify-center text-center relative">
           <img src="/hh.png" alt="Logo" className="w-50 mb-6 h-10 top-[0]" />
           <div className="space-y-6 relative w-full mt-4">
@@ -90,10 +84,7 @@ const MultiStepForm = ({ onClose }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="flex items-center">
-                  {index === step ? "🔵" : "⚪"}
-                  <span className="ml-2">{s}</span>
-                </div>
+                {index === step ? "🔵" : "⚪"} <span className="ml-2">{s}</span>
               </motion.div>
             ))}
             <div className="absolute left-3 top-4 bottom-4 w-0.5 bg-gray-300"></div>
@@ -115,6 +106,8 @@ const MultiStepForm = ({ onClose }) => {
             className="absolute top-2 left-2 cursor-pointer w-16"
             onClick={() => window.location.href = "/"}
           />
+          
+          {/* Question Text */}
           <motion.div
             key={step}
             initial={{ opacity: 0, y: -20 }}
@@ -128,10 +121,6 @@ const MultiStepForm = ({ onClose }) => {
                 <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.1 }}></motion.div>
                 <motion.div className="w-2 h-2 bg-blue-500 rounded-full" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 0.4, delay: 0.2 }}></motion.div>
               </div>
-            ) : step === -1 ? (
-              <p className="text-xl font-semibold text-gray-800 text-left w-full">
-                Hi there! Let’s get to know each other first. What’s your name?
-              </p>
             ) : (
               <p className="text-xl font-semibold text-gray-800 text-left w-full">
                 {steps[step]}
@@ -139,7 +128,8 @@ const MultiStepForm = ({ onClose }) => {
             )}
           </motion.div>
 
-          {!loading && step !== -1 && (
+          {/* Input Field */}
+          {!loading && (
             <motion.input
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -151,9 +141,11 @@ const MultiStepForm = ({ onClose }) => {
               onKeyDown={handleKeyDown}
               className="w-full p-4 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
               placeholder={steps[step]}
+              autoFocus
             />
           )}
 
+          {/* Navigation Buttons */}
           <div className="flex gap-4 mt-6 w-full">
             {step > 0 && (
               <button onClick={prevStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
@@ -163,10 +155,6 @@ const MultiStepForm = ({ onClose }) => {
             {step < steps.length - 1 ? (
               <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
                 Next
-              </button>
-            ) : step === -1 ? (
-              <button onClick={nextStep} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
-                Start
               </button>
             ) : (
               <button onClick={handleSubmit} className="border border-gray-400 text-black px-6 py-2 rounded-full bg-white shadow-md">
