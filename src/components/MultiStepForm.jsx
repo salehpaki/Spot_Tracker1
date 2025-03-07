@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-// Define question sequence (dynamic)
+
 const questionSequence = [
   "Hi there! Let’s get to know each other first. What’s your name?",
   "What’s your Company Called?",
@@ -10,7 +10,6 @@ const questionSequence = [
   "What’s your phone number?",
 ];
 
-// Define static step names for the left section
 const staticSteps = [
   "Your Full Name",
   "Company Name",
@@ -20,7 +19,6 @@ const staticSteps = [
 ];
 
 const MultiStepForm = ({ onClose }) => {
-  // State hooks for tracking form steps, form data, loading status, etc.
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -29,15 +27,15 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [lastChat, setLastChat] = useState(null); // Save only the latest question and answer
+  const [lastChat, setLastChat] = useState(null); 
   const [loading, setLoading] = useState(false);
 
-  // Handle form field change
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Validate current field based on the step
+
   const validateField = () => {
     const currentField = Object.keys(formData)[step];
     const value = formData[currentField];
@@ -47,7 +45,7 @@ const MultiStepForm = ({ onClose }) => {
       return false;
     }
 
-    // Special validation for email
+
     if (step === 3 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       alert("Please enter a valid email address.");
       return false;
@@ -55,14 +53,14 @@ const MultiStepForm = ({ onClose }) => {
     return true;
   };
 
-  // Go to the next step
+
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
       setLastChat({ question: questionSequence[step], answer: formData[currentField] });
       setLoading(true);
 
-      // Simulate loading delay
+      // loading delay
       setTimeout(() => {
         setLoading(false);
         setStep((prevStep) => prevStep + 1);
@@ -70,12 +68,11 @@ const MultiStepForm = ({ onClose }) => {
     }
   };
 
-  // Go to the previous step
+
   const prevStep = () => {
     setStep((prevStep) => Math.max(0, prevStep - 1));
   };
 
-  // Handle form submission
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
@@ -85,7 +82,6 @@ const MultiStepForm = ({ onClose }) => {
     }
   };
 
-  // Handle 'Enter' key press for moving to next step
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       nextStep();
@@ -115,7 +111,7 @@ const MultiStepForm = ({ onClose }) => {
           </div>
         </div>
 
-        {/* Right Section (Dynamic Questions) */}
+     
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -123,7 +119,7 @@ const MultiStepForm = ({ onClose }) => {
           transition={{ duration: 0.5 }}
           className="py-1 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-start items-start relative shadow-lg"
         >
-          {/* Back Button */}
+        
           <img
             src="/dd.png"
             alt="Back"
@@ -131,7 +127,7 @@ const MultiStepForm = ({ onClose }) => {
             onClick={() => (window.location.href = "/")}
           />
 
-          {/* Latest Chat Display */}
+ 
           <div className="w-full mb-4 p-4 rounded-xl">
             {lastChat ? (
               <>
@@ -149,7 +145,7 @@ const MultiStepForm = ({ onClose }) => {
             )}
           </div>
 
-          {/* Question Text */}
+         
           <motion.div
             key={step}
             initial={{ opacity: 0, y: -20 }}
@@ -207,7 +203,7 @@ const MultiStepForm = ({ onClose }) => {
             />
           )}
 
-          {/* Navigation Buttons */}
+  
           <div className="flex gap-4 mt-6 w-full">
             {step > 0 && (
               <button
