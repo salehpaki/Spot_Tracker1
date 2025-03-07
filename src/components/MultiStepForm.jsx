@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const questionSequence = [
   "Hi there! Let’s get to know each other first. What’s your name?",
-  "Nice to meet you, {name}! What’s your Company Called?", // Updated with {name} placeholder
+  "Nice to meet you, {name}! What’s your Company Called?", 
   "What is the type of your business?",
   "What’s your email address?",
   "What’s your phone number?",
@@ -26,7 +26,7 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [lastChat, setLastChat] = useState(null); // Store only the most recent chat
+  const [lastChat, setLastChat] = useState(null); 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -52,7 +52,7 @@ const MultiStepForm = ({ onClose }) => {
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); // Save only current chat
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); 
       setLoading(true);
 
       // loading delay
@@ -70,7 +70,7 @@ const MultiStepForm = ({ onClose }) => {
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); // Save only current chat
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); 
       alert("Thank you for your submission!");
       onClose();
     }
