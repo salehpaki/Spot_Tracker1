@@ -26,7 +26,7 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [lastChat, setLastChat] = useState(null); 
+  const [lastChat, setLastChat] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -52,7 +52,10 @@ const MultiStepForm = ({ onClose }) => {
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
+      setLastChat({
+        question: questionSequence[step],
+        answer: formData[currentField],
+      });
       setLoading(true);
 
       // loading delay
@@ -70,7 +73,10 @@ const MultiStepForm = ({ onClose }) => {
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
+      setLastChat({
+        question: questionSequence[step],
+        answer: formData[currentField],
+      });
       alert("Thank you for your submission!");
       onClose();
     }
@@ -92,7 +98,9 @@ const MultiStepForm = ({ onClose }) => {
             {staticSteps.map((stepName, index) => (
               <motion.div
                 key={index}
-                className={`text-lg flex items-center ${index === step ? "font-bold text-blue-700" : "text-gray-400"}`}
+                className={`text-lg flex items-center ${
+                  index === step ? "font-bold text-blue-700" : "text-gray-400"
+                }`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
@@ -171,13 +179,17 @@ const MultiStepForm = ({ onClose }) => {
               </div>
             ) : (
               <p className="text-xl font-semibold text-gray-800 text-left w-full">
-                {questionSequence[step].replace("{name}", formData.name || "____")}
+                {questionSequence[step].replace(
+                  "{name}",
+                  formData.name || "____"
+                )}
               </p>
             )}
           </motion.div>
 
           {/* Input Field */}
           {!loading && (
+            // Inside the motion.input, update the placeholder to use staticSteps:
             <motion.input
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -188,7 +200,7 @@ const MultiStepForm = ({ onClose }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-              placeholder={questionSequence[step]}
+              placeholder={staticSteps[step]} // Replaced with staticSteps
               autoFocus
             />
           )}
@@ -225,4 +237,3 @@ const MultiStepForm = ({ onClose }) => {
 };
 
 export default MultiStepForm;
-
