@@ -189,7 +189,7 @@ const MultiStepForm = ({ onClose }) => {
 
           {/* Input Field */}
           {!loading && (
-            // Inside the motion.input, update the placeholder to use staticSteps:
+ 
             <motion.input
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -200,7 +200,7 @@ const MultiStepForm = ({ onClose }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-              placeholder={staticSteps[step]} // Replaced with staticSteps
+              placeholder={staticSteps[step]} 
               autoFocus
             />
           )}
