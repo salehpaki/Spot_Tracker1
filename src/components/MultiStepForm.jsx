@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const questionSequence = [
   "Hi there! Let’s get to know each other first. What’s your name?",
-  "What’s your Company Called?",
+  "Nice to meet you What’s your Company Called?",
   "What is the type of your business?",
   "What’s your email address?",
   "What’s your phone number?",
