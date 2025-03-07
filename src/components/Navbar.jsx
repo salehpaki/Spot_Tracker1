@@ -5,7 +5,7 @@ const Navbar = ({ onDemoClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="left-0 w-full flex justify-between items-center px-4 z-10 fixed top-0 bg-white">
+    <nav className="  left-0 w-full flex justify-between items-center px-4 z-10 fixed top-0 bg-white">
       {/* Logo */}
       <div className="flex items-center py-4 mx-4">
         <img src="/hh.png" alt="Logo" className="h-10 w-auto" />
