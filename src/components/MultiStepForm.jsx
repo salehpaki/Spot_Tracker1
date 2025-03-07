@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-
 const questionSequence = [
   "Hi there! Let’s get to know each other first. What’s your name?",
-  "Nice to meet you What’s your Company Called?",
+  "Nice to meet you, {name}! What’s your Company Called?", // Updated with {name} placeholder
   "What is the type of your business?",
   "What’s your email address?",
   "What’s your phone number?",
@@ -30,11 +29,9 @@ const MultiStepForm = ({ onClose }) => {
   const [lastChat, setLastChat] = useState(null); 
   const [loading, setLoading] = useState(false);
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
 
   const validateField = () => {
     const currentField = Object.keys(formData)[step];
@@ -45,14 +42,12 @@ const MultiStepForm = ({ onClose }) => {
       return false;
     }
 
-
     if (step === 3 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       alert("Please enter a valid email address.");
       return false;
     }
     return true;
   };
-
 
   const nextStep = () => {
     if (validateField()) {
@@ -67,7 +62,6 @@ const MultiStepForm = ({ onClose }) => {
       }, 500);
     }
   };
-
 
   const prevStep = () => {
     setStep((prevStep) => Math.max(0, prevStep - 1));
@@ -111,7 +105,6 @@ const MultiStepForm = ({ onClose }) => {
           </div>
         </div>
 
-     
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -119,7 +112,6 @@ const MultiStepForm = ({ onClose }) => {
           transition={{ duration: 0.5 }}
           className="py-1 w-3/4 h-full bg-white p-16 rounded-2xl flex flex-col justify-start items-start relative shadow-lg"
         >
-        
           <img
             src="/dd.png"
             alt="Back"
@@ -127,7 +119,6 @@ const MultiStepForm = ({ onClose }) => {
             onClick={() => (window.location.href = "/")}
           />
 
- 
           <div className="w-full mb-4 p-4 rounded-xl">
             {lastChat ? (
               <>
@@ -145,7 +136,6 @@ const MultiStepForm = ({ onClose }) => {
             )}
           </div>
 
-         
           <motion.div
             key={step}
             initial={{ opacity: 0, y: -20 }}
@@ -203,7 +193,6 @@ const MultiStepForm = ({ onClose }) => {
             />
           )}
 
-  
           <div className="flex gap-4 mt-6 w-full">
             {step > 0 && (
               <button
