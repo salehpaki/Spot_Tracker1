@@ -26,7 +26,7 @@ const MultiStepForm = ({ onClose }) => {
     email: "",
     phone: "",
   });
-  const [lastChat, setLastChat] = useState(null); 
+  const [lastChat, setLastChat] = useState(null); // Store only the most recent chat
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -52,7 +52,7 @@ const MultiStepForm = ({ onClose }) => {
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); // Save only current chat
       setLoading(true);
 
       // loading delay
@@ -70,7 +70,7 @@ const MultiStepForm = ({ onClose }) => {
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); // Save only current chat
       alert("Thank you for your submission!");
       onClose();
     }
@@ -188,7 +188,7 @@ const MultiStepForm = ({ onClose }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-              placeholder={questionSequence[step]}
+              placeholder=""  
               autoFocus
             />
           )}
