@@ -6,7 +6,7 @@ const Hero5 = ({ onClose }) => {
   const [showForm, setShowForm] = useState(false);
 
   return (
-    <div className=" fixed top-0 left-0 w-full h-screen flex justify-center p-6 bg-gray-900 py-5">
+    <div className="fixed top-0 left-0 w-full h-screen flex justify-center p-6 bg-gray-900 py-2">
       {!showForm ? (
         <motion.div
           initial={{ x: "100%", opacity: 0 }}

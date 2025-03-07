@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const questionSequence = [
   "Hi there! Let’s get to know each other first. What’s your name?",
-  "Nice to meet you, {name}! What’s your Company Called?", 
+  "Nice to meet you, {name}! What’s your Company Called?", // Updated with {name} placeholder
   "What is the type of your business?",
   "What’s your email address?",
   "What’s your phone number?",
@@ -52,7 +52,7 @@ const MultiStepForm = ({ onClose }) => {
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); 
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
       setLoading(true);
 
       // loading delay
@@ -70,7 +70,7 @@ const MultiStepForm = ({ onClose }) => {
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
-      setLastChat({ question: questionSequence[step], answer: formData[currentField] }); 
+      setLastChat({ question: questionSequence[step], answer: formData[currentField] });
       alert("Thank you for your submission!");
       onClose();
     }
@@ -188,7 +188,7 @@ const MultiStepForm = ({ onClose }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-              placeholder=""  
+              placeholder={questionSequence[step]}
               autoFocus
             />
           )}
@@ -225,3 +225,4 @@ const MultiStepForm = ({ onClose }) => {
 };
 
 export default MultiStepForm;
+
