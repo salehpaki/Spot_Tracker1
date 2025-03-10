@@ -5,7 +5,7 @@ const Hero = ({ onShowHero5 }) => {
   return (
     <div className="flex flex-col lg:flex-row items-center min-h-screen justify-between px-8 text-center lg:text-left bg-white relative -mt-20">
       {/* Left Section */}
-      <div className="flex flex-col mb-12 px-16">
+      <div className="flex flex-col md:mb-12 px-16 md:mt-0 mt-48">
         <p className="text-[40px] font-bold">
           <span className="text-blue-800/90">Revolutionize</span> Your Inventory 
           Management with

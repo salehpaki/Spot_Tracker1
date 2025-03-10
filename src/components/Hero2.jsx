@@ -37,10 +37,10 @@ const Hero2 = () => {
         <img
           src="/ff.jpg"
           alt="Step Image"
-          className="w-1/3 rounded-lg shadow-md"
+          className="md:w-1/3 rounded-lg shadow-md"
         />
       </div>
-      <div className="relative flex items-center gap-36 bg-white p-20 rounded-lg shadow-md   py-4">
+      <div className="relative flex items-center gap-36 bg-white p-20 rounded-lg shadow-md   md:py-4 col-span-10">
         {/* Text Content */}
           {/* Image on the Left */}
           <img
