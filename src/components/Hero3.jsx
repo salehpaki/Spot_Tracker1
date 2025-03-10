@@ -2,9 +2,9 @@ import React from "react";
 
 const Hero3 = () => {
   return (
-    <div id="features" className="flex flex-col lg:flex-row items-center justify-center py-8 min-h-screen">
+    <div id="features" className="flex flex-col lg:flex-row items-center justify-center py-8 min-h-screen -mt-16">
       {/* Left Side - Vertical Cards */}
-      <div className="flex flex-col space-y-6 w-full lg:w-1/3 items-center">
+      <div className="flex flex-col space-y-6 w-full lg:w-1/3 items-center mb-10">
         {[0, 2].map((index) => (
           <div
             key={index}

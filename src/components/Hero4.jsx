@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero4 = ({ onShowHero5 }) => {
   return (
-    <div className="bg-black text-white py-12 flex flex-col items-center text-center px-6">
+    <div className="bg-black text-white py-12 flex flex-col items-center text-center px-6 -mt-16">
       {/* Heading */}
       <h2 className="text-3xl md:text-4xl font-semibold max-w-2xl">
         Ready to Automate Your <span className="font-bold">Inventory Management?</span>

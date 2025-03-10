@@ -23,7 +23,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div id="testimonials" className="w-full bg-white py-12 flex justify-center items-center min-h-screen">
+    <div id="testimonials" className="pt-0 -mt-28 w-full bg-white py-12 flex justify-center items-center min-h-screen">
       {/* Parent Div */}
       <div className="w-full max-w-6xl px-6">
         <h2 className="text-3xl font-bold text-center">Testimonials</h2>

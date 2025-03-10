@@ -43,7 +43,7 @@ const Hero = ({ onShowHero5 }) => {
         <div className="relative w-full mt-32">
           <img
             src="/hs.png"
-            className="relative w-[110%] right-6 max-w-5xl z-0 mb-24 pointer-events-none ml-2.5 mt-8"
+            className="relative w-[110%] right-6 max-w-5xl z-0 pointer-events-none ml-2.5 mt-8"
             alt="Dashboard Image 2"
           />
           <img
