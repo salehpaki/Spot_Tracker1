@@ -29,10 +29,10 @@ const Navbar = ({ onDemoClick }) => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-base lg:text-lg text-gray-800 font-bold">
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
-          <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
+          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
+          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
+          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
+          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
         </ul>
 
         {/* Mobile Menu Toggle Button */}
@@ -46,10 +46,10 @@ const Navbar = ({ onDemoClick }) => {
         {/* Mobile Menu */}
         {isOpen && (
           <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center space-y-4 py-4 md:hidden">
-            <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
-            <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
-            <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
-            <li className="hover:text-blue-600 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
+            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
+            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
+            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
+            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
             <button
               className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-lg"
               onClick={onDemoClick}
