@@ -18,38 +18,77 @@ const Navbar = ({ onDemoClick }) => {
 
   return (
     <>
-
       <div id="home"></div>
 
-      <nav className="left-0 w-full flex justify-between items-center px-4 z-10 fixed top-0 bg-white">
+      <nav className="left-0 w-full h-auto flex items-center justify-between px-4 py-2 md:px-8 bg-white fixed top-0 z-10">
         {/* Logo */}
-        <div className="flex items-center py-4 mx-4">
+        <div className="flex items-center">
           <img src="/hh.png" alt="Logo" className="h-10 w-auto" />
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-base lg:text-lg text-gray-800 font-bold">
-          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
-          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
-          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
-          <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
+        <ul className="hidden md:flex items-center space-x-6 lg:space-x-8 text-base lg:text-lg text-gray-800 font-bold">
+          <li
+            className="hover:text-blue-800/90 cursor-pointer"
+            onClick={() => handleScroll("home")}
+          >
+            Home
+          </li>
+          <li
+            className="hover:text-blue-800/90 cursor-pointer"
+            onClick={() => handleScroll("services")}
+          >
+            Services
+          </li>
+          <li
+            className="hover:text-blue-800/90 cursor-pointer"
+            onClick={() => handleScroll("features")}
+          >
+            Features
+          </li>
+          <li
+            className="hover:text-blue-800/90 cursor-pointer"
+            onClick={() => handleScroll("testimonials")}
+          >
+            Testimonials
+          </li>
         </ul>
 
         {/* Mobile Menu Toggle Button */}
         <button
-          className="md:hidden p-1 text-gray-800"
+          className="md:hidden p-2 text-gray-800 flex items-center justify-center"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Mobile Menu */}
+        {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <ul className="absolute top-16 left-0 w-full bg-white flex flex-col items-center space-y-4 py-4 md:hidden">
-            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("home")}>Home</li>
-            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("services")}>Services</li>
-            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("features")}>Features</li>
-            <li className="hover:text-blue-800/90 cursor-pointer" onClick={() => handleScroll("testimonials")}>Testimonials</li>
+          <ul className="absolute top-[50px] left-0 w-full bg-white shadow-md flex flex-col items-center space-y-4 py-4">
+            <li
+              className="hover:text-blue-800/90 cursor-pointer"
+              onClick={() => handleScroll("home")}
+            >
+              Home
+            </li>
+            <li
+              className="hover:text-blue-800/90 cursor-pointer"
+              onClick={() => handleScroll("services")}
+            >
+              Services
+            </li>
+            <li
+              className="hover:text-blue-800/90 cursor-pointer"
+              onClick={() => handleScroll("features")}
+            >
+              Features
+            </li>
+            <li
+              className="hover:text-blue-800/90 cursor-pointer"
+              onClick={() => handleScroll("testimonials")}
+            >
+              Testimonials
+            </li>
             <button
               className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-lg"
               onClick={onDemoClick}
@@ -59,9 +98,9 @@ const Navbar = ({ onDemoClick }) => {
           </ul>
         )}
 
-        {/* Get a Demo Button for Desktop */}
+        {/* Desktop "Get a Demo" Button */}
         <button
-          className="bg-red-600 text-white px-4 lg:px-5 py-2 rounded-full hover:bg-red-700 text-base lg:text-lg hidden md:block"
+          className="hidden md:block bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 text-lg"
           onClick={onDemoClick}
         >
           Get a Demo
