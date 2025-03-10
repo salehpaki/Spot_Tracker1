@@ -52,10 +52,17 @@ const MultiStepForm = ({ onClose }) => {
   const nextStep = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
+      const currentAnswer = formData[currentField];
+
+      // Update last chat immediately for each step
       setLastChat({
-        question: questionSequence[step],
-        answer: formData[currentField],
+        question: questionSequence[step].replace(
+          "{name}",
+          formData.name || "____" // Replace placeholder with actual name if available
+        ),
+        answer: currentAnswer,
       });
+
       setLoading(true);
 
       // loading delay
@@ -73,10 +80,16 @@ const MultiStepForm = ({ onClose }) => {
   const handleSubmit = () => {
     if (validateField()) {
       const currentField = Object.keys(formData)[step];
+      const currentAnswer = formData[currentField];
+
       setLastChat({
-        question: questionSequence[step],
-        answer: formData[currentField],
+        question: questionSequence[step].replace(
+          "{name}",
+          formData.name || "____" // Ensure name is replaced in the question
+        ),
+        answer: currentAnswer,
       });
+
       alert("Thank you for your submission!");
       onClose();
     }
@@ -181,7 +194,7 @@ const MultiStepForm = ({ onClose }) => {
               <p className="text-xl font-semibold text-gray-800 text-left w-full">
                 {questionSequence[step].replace(
                   "{name}",
-                  formData.name || "____"
+                  formData.name || "____" // Correctly replace {name} placeholder
                 )}
               </p>
             )}
@@ -189,7 +202,6 @@ const MultiStepForm = ({ onClose }) => {
 
           {/* Input Field */}
           {!loading && (
- 
             <motion.input
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -200,7 +212,7 @@ const MultiStepForm = ({ onClose }) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="w-full p-6 border-b-2 border-blue-600 focus:outline-none text-lg text-left"
-              placeholder={staticSteps[step]} 
+              placeholder={staticSteps[step]}
               autoFocus
             />
           )}

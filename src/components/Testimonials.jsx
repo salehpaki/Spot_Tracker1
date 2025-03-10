@@ -23,11 +23,11 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="w-full bg-white py-12 flex justify-center">
+    <div id="testimonials" className="w-full bg-white py-12 flex justify-center items-center min-h-screen">
       {/* Parent Div */}
       <div className="w-full max-w-6xl px-6">
         <h2 className="text-3xl font-bold text-center">Testimonials</h2>
-        <p className="text-gray-600 text-center mt-2 font-medium">What Our Clients Say</p>
+        <p className="text-gray-600 mt-2 font-medium text-center">What Our Clients Say</p>
 
         <div className="mt-8 flex flex-col md:flex-row justify-center gap-6">
           {testimonials.map((testimonial, index) => (

@@ -2,11 +2,8 @@ import React from "react";
 
 const Hero3 = () => {
   return (
-    
-    <div className="flex flex-col lg:flex-row items-center justify-center py-8">
-        
+    <div id="features" className="flex flex-col lg:flex-row items-center justify-center py-8 min-h-screen">
       {/* Left Side - Vertical Cards */}
-     
       <div className="flex flex-col space-y-6 w-full lg:w-1/3 items-center">
         {[0, 2].map((index) => (
           <div
@@ -33,7 +30,7 @@ const Hero3 = () => {
       </div>
 
       {/* Centered Middle Card */}
-      <div className="flex  w-full lg:w-1/3 my-6 lg:my-0">
+      <div className="flex w-full lg:w-1/3 my-6 lg:my-0">
         <div className="bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center w-80">
           {/* Top Image */}
           <img src="/top2.png" className="w-12 h-12 mb-2" alt="Top 2" />
@@ -50,7 +47,7 @@ const Hero3 = () => {
       </div>
 
       {/* Right Side - Images */}
-      <div className=" flex flex-col items-center lg:w-1/4 space-y-2">
+      <div className="flex flex-col items-center lg:w-1/4 space-y-2">
         {["/HomeScreen.png", "/down.png"].map((src, index) => (
           <div key={index} className="w-full">
             <img src={src} className="w-75 h-60" alt={`Right Image ${index + 1}`} />
