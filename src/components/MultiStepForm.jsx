@@ -97,7 +97,11 @@ const MultiStepForm = ({ onClose }) => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      nextStep();
+      if (step === questionSequence.length - 1) {
+        handleSubmit();  // Submit the form on the last step
+      } else {
+        nextStep();  // Move to the next step
+      }
     }
   };
 
