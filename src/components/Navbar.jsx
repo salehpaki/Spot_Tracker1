@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react"; // Icons for menu toggle
+import { Menu, X } from "lucide-react"; 
 
 const Navbar = ({ onDemoClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleScroll = (id) => {
     if (id === "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
     } else {
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-    setIsOpen(false); // Close mobile menu after clicking
+    setIsOpen(false); 
   };
 
   return (
     <>
-      {/* Empty div to mark home section */}
+
       <div id="home"></div>
 
       <nav className="left-0 w-full flex justify-between items-center px-4 z-10 fixed top-0 bg-white">
